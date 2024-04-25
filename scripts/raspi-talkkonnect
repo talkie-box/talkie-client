@@ -131,8 +131,8 @@ deb_ver () {
 }
 
 calc_wt_size() {
-  # NOTE: it's tempting to redirect stderr to /dev/null, so supress error 
-  # output from tput. However in this case, tput detects neither stdout or 
+  # NOTE: it's tempting to redirect stderr to /dev/null, so supress error
+  # output from tput. However in this case, tput detects neither stdout or
   # stderr is a tty and so only gives default 80, 24 values
   WT_HEIGHT=18
   WT_WIDTH=$(tput cols)
@@ -365,9 +365,9 @@ do_hostname() {
   if [ "$INTERACTIVE" = True ]; then
     whiptail --msgbox "\
 Please note: RFCs mandate that a hostname's labels \
-may contain only the ASCII letters 'a' through 'z' (case-insensitive), 
+may contain only the ASCII letters 'a' through 'z' (case-insensitive),
 the digits '0' through '9', and the hyphen.
-Hostname labels cannot begin or end with a hyphen. 
+Hostname labels cannot begin or end with a hyphen.
 No other symbols, punctuation characters, or blank spaces are permitted.\
 " 20 70 1
   fi
@@ -959,7 +959,7 @@ do_system_menu() {
       "S7 Splash Screen" "Choose graphical splash screen or text boot" \
       "S8 Power LED" "Set behaviour of power LED" \
       3>&1 1>&2 2>&3)
-  elif is_live ; then 
+  elif is_live ; then
     FUN=$(whiptail --title "Raspberry Pi Software Configuration Tool (raspi-config)" --menu "System Options" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
       "S1 Wireless LAN" "Enter SSID and passphrase" \
       "S3 Password" "Change password for the '$USER' user" \
@@ -1227,7 +1227,7 @@ do_user() {
 	echo export GOPATH=/home/talkkonnect/gocode >>  ~/.bashrc
 	echo export GOBIN=/home/talkkonnect/bin >>  ~/.bashrc
 	echo export GO111MODULE="auto" >>  ~/.bashrc
-	echo "alias tk='cd /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/'" >>  ~/.bashrc
+	echo "alias tk='cd /home/talkiebox/talkie-client/talkkonnect/'" >>  ~/.bashrc
 }
 
 do_install_prerequisites() {
@@ -1274,7 +1274,7 @@ do_install_talkkonnect() {
 	cd $GOPATH/src/github.com/talkkonnect/talkkonnect
 	mv $GOPATH/src/github.com/talkkonnect/talkkonnect $GOPATH/src/github.com/talkkonnect/talkkonnect
 	/usr/local/go/bin/go build -o /home/talkkonnect/bin/talkkonnect cmd/talkkonnect/main.go
-	cp /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/sample-configs/talkkonnect-version2-usb-gpio-example.xml /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/talkkonnect.xml
+	cp /home/talkiebox/talkie-client/talkkonnect/sample-configs/talkkonnect-version2-usb-gpio-example.xml /home/talkiebox/talkie-client/talkkonnect/talkkonnect.xml
 
 }
 
@@ -1333,9 +1333,9 @@ if [ "$cputype" = "armv7l" ] || [ "$cputype" = "aarch64" ] ; then
 			rm /home/talkkonnect/bin/talkkonnect
 		fi
 
-		if [ -f "/home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/talkkonnect.xml" ] ; then
+		if [ -f "/home/talkiebox/talkie-client/talkkonnect/talkkonnect.xml" ] ; then
 			echo "copying talkkonnect.xml for safe keeping to /root/talkkonnect.xml"
-			cp /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/talkkonnect.xml /root/
+			cp /home/talkiebox/talkie-client/talkkonnect/talkkonnect.xml /root/
 		fi
 
 		rm -rf /home/talkkonnect/gocode/src/github.old
@@ -1369,16 +1369,16 @@ if [ "$cputype" = "armv7l" ] || [ "$cputype" = "aarch64" ] ; then
 		echo "getting talkkonnect with go get"
 		cd $GOPATH
 		go get -v github.com/talkkonnect/talkkonnect
-		cp /root/mumble.pem /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/
+		cp /root/mumble.pem /home/talkiebox/talkie-client/talkkonnect/
 
 		## Build talkkonnect as binary
 		cd $GOPATH/src/github.com/talkkonnect/talkkonnect
 		go build -o /home/talkkonnect/bin/talkkonnect cmd/talkkonnect/main.go
 
 		if [ -f "/root/talkkonnect.xml" ] ; then
-			echo "copying original talkkonnect.xml back to /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/talkkonnect.xml"
-			rm /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/talkkonnect.xml
-			cp /root/talkkonnect.xml  /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/talkkonnect.xml
+			echo "copying original talkkonnect.xml back to /home/talkiebox/talkie-client/talkkonnect/talkkonnect.xml"
+			rm /home/talkiebox/talkie-client/talkkonnect/talkkonnect.xml
+			cp /root/talkkonnect.xml  /home/talkiebox/talkie-client/talkkonnect/talkkonnect.xml
 		fi
 
 
@@ -1394,7 +1394,7 @@ if [ "$cputype" = "armv7l" ] || [ "$cputype" = "aarch64" ] ; then
 		## Notify User
 		echo "=> Finished Updating TalKKonnect"
 		echo "=> Updated talkkonnect binary is in /home/talkkonect/bin"
-		echo "copied old talkkonnect.xml file and replaced in /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/"
+		echo "copied old talkkonnect.xml file and replaced in /home/talkiebox/talkie-client/talkkonnect/"
 		echo "Happy talkkonnecting!!"
         	fi
 
@@ -1423,10 +1423,10 @@ if [ "$cputype" = "armv7l" ] || [ "$cputype" = "aarch64" ] ; then
 			rm /home/talkkonnect/bin/talkkonnect
 		fi
 
-		if [ -f "/home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/talkkonnect.xml" ]
+		if [ -f "/home/talkiebox/talkie-client/talkkonnect/talkkonnect.xml" ]
 		then
 			echo "copying talkkonnect.xml for safe keeping to /root/talkkonnect.xml"
-			cp /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/talkkonnect.xml /root/
+			cp /home/talkiebox/talkie-client/talkkonnect/talkkonnect.xml /root/
 		fi
 
 		rm -rf /home/talkkonnect/gocode/src/github.old
@@ -1461,16 +1461,16 @@ if [ "$cputype" = "armv7l" ] || [ "$cputype" = "aarch64" ] ; then
 		echo "getting talkkonnect with go get"
 		cd $GOPATH
 		go get -v github.com/talkkonnect/talkkonnect
-		cp /root/mumble.pem /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/
+		cp /root/mumble.pem /home/talkiebox/talkie-client/talkkonnect/
 
 		## Build talkkonnect as binary
 		cd $GOPATH/src/github.com/talkkonnect/talkkonnect
 		go build -o /home/talkkonnect/bin/talkkonnect cmd/talkkonnect/main.go
 
 		if [ -f "/root/talkkonnect.xml" ] ; then
-			echo "copying original talkkonnect.xml back to /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/talkkonnect.xml"
-			rm /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/talkkonnect.xml
-			cp /root/talkkonnect.xml  /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/talkkonnect.xml
+			echo "copying original talkkonnect.xml back to /home/talkiebox/talkie-client/talkkonnect/talkkonnect.xml"
+			rm /home/talkiebox/talkie-client/talkkonnect/talkkonnect.xml
+			cp /root/talkkonnect.xml  /home/talkiebox/talkie-client/talkkonnect/talkkonnect.xml
 		fi
 
 		if pgrep -x "$SERVICE" >/dev/null
@@ -1485,7 +1485,7 @@ if [ "$cputype" = "armv7l" ] || [ "$cputype" = "aarch64" ] ; then
 		## Notify User
 		echo "=> Finished Updating TalKKonnect"
 		echo "=> Updated talkkonnect binary is in /home/talkkonect/bin"
-		echo "copied old talkkonnect.xml file and replaced in /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/"
+		echo "copied old talkkonnect.xml file and replaced in /home/talkiebox/talkie-client/talkkonnect/"
 		echo "Happy talkkonnecting!!"
         fi
 fi

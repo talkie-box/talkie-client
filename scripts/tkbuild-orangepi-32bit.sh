@@ -55,7 +55,7 @@ echo export PATH=$PATH:/usr/local/go/bin >>  /etc/bash.bashrc
 echo export GOPATH=/home/talkkonnect/gocode >> /etc/bash.bashrc
 echo export GOBIN=/home/talkkonnect/bin >>  /etc/bash.bashrc
 echo export GO111MODULE="auto" >>  /etc/bash.bashrc
-echo "alias tk='cd /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/'" >>  /etc/bash.bashrc
+echo "alias tk='cd /home/talkiebox/talkie-client/talkkonnect/'" >>  /etc/bash.bashrc
 
 
 ## Set up GOENVIRONMENT

@@ -45,16 +45,16 @@ then
 	rm /home/talkkonnect/bin/talkkonnect
 fi
 
-if [[ -f "/home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/talkkonnect.xml" ]]
+if [[ -f "/home/talkiebox/talkie-client/talkkonnect/talkkonnect.xml" ]]
 then
 	echo "copying talkkonnect.xml for safe keeping to /root/"$BACKUPXML
-	cp /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/talkkonnect.xml /root/$BACKUPXML
+	cp /home/talkiebox/talkie-client/talkkonnect/talkkonnect.xml /root/$BACKUPXML
 fi
 
-if [[ -f "/home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/mumble.pem" ]]
+if [[ -f "/home/talkiebox/talkie-client/talkkonnect/mumble.pem" ]]
 then
 	echo "copying mumble.pem for safe keeping to /root/"$BACKUPXML
-	cp /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/talkkonnect.xml /root/$BACKUPCERT
+	cp /home/talkiebox/talkie-client/talkkonnect/talkkonnect.xml /root/$BACKUPCERT
 fi
 
 rm -rf /home/talkkonnect/gocode/src/github.old
@@ -100,7 +100,7 @@ cd $GOPATH
 mkdir -p /home/talkkonnect/gocode/src/github.com/talkkonnect
 cd /home/talkkonnect/gocode/src/github.com/talkkonnect
 git clone https://github.com/talkkonnect/talkkonnect
-cd /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect
+cd /home/talkiebox/talkie-client/talkkonnect/
 go mod init
 go mod tidy
 
@@ -109,8 +109,8 @@ cd $GOPATH/src/github.com/talkkonnect/talkkonnect
 go build -o /home/talkkonnect/bin/talkkonnect cmd/talkkonnect/main.go
 
 echo copying $BACKUPXML
-cp /root/$BACKUPCERT /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/mumble.pem
-cp /root/$BACKUPXML /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/talkkonnect.xml
+cp /root/$BACKUPCERT /home/talkiebox/talkie-client/talkkonnect/mumble.pem
+cp /root/$BACKUPXML /home/talkiebox/talkie-client/talkkonnect/talkkonnect.xml
 
 if pgrep -x "$SERVICE" >/dev/null
 then
@@ -124,7 +124,7 @@ fi
 ## Notify User
 echo "=> Finished Updating TalKKonnect"
 echo "=> Updated talkkonnect binary is in /home/talkkonect/bin"
-echo "copied old talkkonnect.xml file and replaced in /home/talkkonnect/gocode/src/github.com/talkkonnect/talkkonnect/"
+echo "copied old talkkonnect.xml file and replaced in /home/talkiebox/talkie-client/talkkonnect/"
 echo "Happy talkkonnecting!!"
 
 exit
