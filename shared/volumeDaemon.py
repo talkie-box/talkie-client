@@ -19,7 +19,7 @@ logger.addHandler(file_handler)
 # Function to set volume
 def set_volume(vol):
     # Adjust the command to specify the correct card and device
-    os.system(f"amixer -c 1 set Speaker playback {vol}%")
+    os.system(f"amixer -c0 set PCM playback {vol}%")
 
 def current_volume_percent(voltage):
     return int((voltage / 3.3) * 100)
